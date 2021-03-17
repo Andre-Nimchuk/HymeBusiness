@@ -2,6 +2,8 @@ import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
+import MainTabNavigator from './MainTabNavigator';
+
 import {
   SignInScreen,
   PhoneVerifyCodeScreen,
@@ -9,6 +11,12 @@ import {
 } from '../scenes/onboarding';
 
 const Stack = createStackNavigator();
+
+const AppStack = () => (
+  <Stack.Navigator initialRouteName="Main" screenOptions={{headerShown: false}}>
+    <Stack.Screen name="Main" component={MainTabNavigator} />
+  </Stack.Navigator>
+);
 
 const OnboardingStack = () => (
   <Stack.Navigator
@@ -35,7 +43,7 @@ export default function AppNavigator() {
   }, [authenticateUser]); */
   return (
     <NavigationContainer>
-      <OnboardingStack />
+      {true ? <AppStack /> : <OnboardingStack />}
     </NavigationContainer>
   );
 }

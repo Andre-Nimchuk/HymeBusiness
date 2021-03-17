@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
-    fontFamily: 'roboto',
+    // fontFamily: 'roboto',
     fontWeight: '700',
     fontSize: 17,
     textAlign: 'center',
@@ -39,24 +39,14 @@ function FlatButton({
   /* const {t} = useTranslation(); */
   const [disableBtn, setDisableBtn] = useState(false);
 
-  const signIn = async () => {
-    if (!phoneNumber) return false;
-
-    await signInOrUp(phoneNumber)
-      .then(({user, type}) => {
-        goToNextScreen(user, type);
-      })
-      .catch((err: any) => console.log(err, 'signInError'));
-  };
-
   return (
     <TouchableOpacity
       onPress={() => {
         setDisableBtn(true);
         setTimeout(() => setDisableBtn(false), 3000);
-        signIn();
+        onPress();
       }}
-      disabled={disabled}>
+      disabled={disableBtn || disabled}>
       <View
         style={{
           ...styles.btn,

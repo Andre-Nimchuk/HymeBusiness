@@ -2,55 +2,57 @@ import React, {useState} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 /* 
 import {CognitoUser} from '@aws-amplify/auth'; */
+import OTPInputView from '@twotalltotems/react-native-otp-input';
 import Colors from '../../styles/Colors';
 import {Icon} from '@ui-kitten/components';
-/* import BackArrowHeader from '../../components/BackArrowHeader'; */
+import BackArrowHeader from '../../components/BackArrowHeader';
+import {useTranslation} from 'react-i18next';
 
 export default function PhoneVerifyCodeScreen({route, navigation}) {
-  /* const {sendCustomChallengeAnswer, resendSignupCode, handleLogin} = useAuth();
-  const {t} = useTranslation(); */
+  /* const {sendCustomChallengeAnswer, resendSignupCode, handleLogin} = useAuth(); */
+  const {t} = useTranslation();
 
   const [disableResend, setDisableResend] = useState(false);
   const [wrongCode, setWrongCode] = useState(false);
-  const authType = route.params?.type;
-  const user = route.params?.user;
+  // const authType = route.params?.type;
+  // const user = route.params?.user;
 
-  /* const verifySignupCode = (code: string) =>
-    sendCustomChallengeAnswer(user, code)
-      .then((auth: any) => {
-        if (auth.attributes === undefined) {
-          navigation.goBack();
-          return;
-        }
+  // const verifySignupCode = code =>
+  //   sendCustomChallengeAnswer(user, code)
+  //     .then(auth => {
+  //       if (auth.attributes === undefined) {
+  //         navigation.goBack();
+  //         return;
+  //       }
 
-        if (authType === 'signUp') navigation.navigate('Name');
-        else handleLogin({token: auth.signInUserSession.accessToken.jwtToken});
-      })
-      .catch((err: any) => {
-        setWrongCode(true);
-        console.log('error', err);
-      });
+  //       if (authType === 'signUp') navigation.navigate('Name');
+  //       else handleLogin({token: auth.signInUserSession.accessToken.jwtToken});
+  //     })
+  //     .catch(err => {
+  //       setWrongCode(true);
+  //       console.log('error', err);
+  //     });
 
-  const resendVerificationCode = async () =>
-    resendSignupCode(user.username)
-      .then((res: any) => {
-        console.log('code resent successfully', res);
-      })
-      .catch((e: any) => {
-        console.log(e);
-      }); */
+  // const resendVerificationCode = async () =>
+  //   resendSignupCode(user.username)
+  //     .then(res => {
+  //       console.log('code resent successfully', res);
+  //     })
+  //     .catch(e => {
+  //       console.log(e);
+  //     });
 
   return (
     <View style={{flex: 1}}>
-      {/* <BackArrowHeader navigation={navigation} /> */}
+      <BackArrowHeader navigation={navigation} />
       <View style={styles.container}>
         <Text style={styles.h1}>Phone verification</Text>
         <Text style={{marginBottom: 32}}>
           Enter code your received to
-          <Text style={styles.labelTextStyle}>{user.username}</Text>
+          {/* <Text style={styles.labelTextStyle}>{user.username}</Text> */}
         </Text>
 
-        {/* <OTPInputView
+        <OTPInputView
           style={{width: '100%', height: 90}}
           pinCount={6}
           autoFocusOnLoad
@@ -63,14 +65,14 @@ export default function PhoneVerifyCodeScreen({route, navigation}) {
           codeInputHighlightStyle={styles.focusCell}
           onCodeChanged={() => setWrongCode(false)}
           onCodeFilled={code => {
-            verifySignupCode(code);
+            // verifySignupCode(code);
             console.log(`Code is ${code}, you are good to go!`);
           }}
-        /> */}
+        />
 
         <TouchableOpacity
           onPress={() => {
-            /* resendVerificationCode(); */
+            resendVerificationCode();
           }}
           disabled={disableResend}>
           <View style={styles.row}>
@@ -80,7 +82,7 @@ export default function PhoneVerifyCodeScreen({route, navigation}) {
                 color: disableResend ? '#aaa' : Colors.pink,
               }}
               status="danger">
-              {/* {`${t(' */}RESEND CODE{/* ')}`} */}
+              {t('RESEND CODE')}
             </Text>
             <Icon
               style={styles.icon}
@@ -136,7 +138,7 @@ const styles = StyleSheet.create({
     height: 15,
   },
   resendBtn: {
-    fontFamily: 'roboto',
+    // fontFamily: 'roboto',
     fontSize: 14,
     justifyContent: 'center',
     alignItems: 'center',

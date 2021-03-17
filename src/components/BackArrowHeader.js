@@ -13,7 +13,7 @@ function BackArrowHeader({
   onLeftPress,
   backComponent,
   rightElement,
-}: any) {
+}) {
   const {t} = useTranslation();
 
   return (
@@ -30,12 +30,12 @@ function BackArrowHeader({
       <View style={styles.center}>
         {title ? (
           <Text style={[styles.title, {color: color || '#27283B'}]}>
-            {`${t(title)}`}
+            {t(title)}
           </Text>
         ) : null}
         {subTitle ? (
           <Text style={[styles.subTitle, {color: color || '#27283B'}]}>
-            {`${t(subTitle)}`}
+            {t(subTitle)}
           </Text>
         ) : null}
       </View>

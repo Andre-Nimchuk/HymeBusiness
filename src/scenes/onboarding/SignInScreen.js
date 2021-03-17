@@ -8,6 +8,7 @@ import CountryPicker, {
 import FlatButton from '../../components/FlatButton';
 import Colors from '../../styles/Colors';
 import {useNavigation} from '@react-navigation/native';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -58,7 +59,7 @@ export default function SignInScreen({navigation}) {
     setPhoneNumber(`+${country.callingCode}`);
   };
 
-  const goToNextScreen = async (user: any, type: any) =>
+  const goToNextScreen = async (user, type) =>
     navigate('PhoneVerifyCode', {
       type,
       user,
@@ -98,7 +99,7 @@ export default function SignInScreen({navigation}) {
       <FlatButton
         title="Next"
         onPress={() => {
-          NavigationPreloadManager.push('PhoneVerifyCode');
+          navigation.push('PhoneVerifyCode');
         }}
         style={styles.buttonStyle}
       />
