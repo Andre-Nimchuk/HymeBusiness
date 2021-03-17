@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-
+import {CheckBox, Input} from '@ui-kitten/components';
 import Colors from '../../styles/Colors';
 
 /* import {useMutation} from '@apollo/client';
-import {Text, Layout, CheckBox, Input} from '@ui-kitten/components';
+
 import BackArrowHeader from 'components/BackArrowHeader';
 import FlatButton from 'components/FlatButton';
 
@@ -116,7 +116,7 @@ export default function NameScreen({navigation}: any) {
         <Text style={styles.labelTextStyle}>
           {/* {`${t(' */}First Name{/* ')}`} */}
         </Text>
-        {/* <Input
+        <Input
           style={{
             borderColor: wrongName ? Colors.error : 'rgba(28,26,47, 0.1)',
           }}
@@ -131,11 +131,11 @@ export default function NameScreen({navigation}: any) {
             if (value.includes('@')) setWrongName(true);
             else setWrongName(false);
           }}
-        /> */}
+        />
         <Text style={styles.labelTextStyle}>
           {/* {`${t(' */}Last Name{/* ')}`} */}
         </Text>
-        {/* <Input
+        <Input
           style={{
             borderColor: wrongSurName ? Colors.error : 'rgba(28,26,47, 0.1)',
           }}
@@ -182,7 +182,7 @@ export default function NameScreen({navigation}: any) {
                 ? 1
                 : 0.7,
           }}
-        /> */}
+        />
       </View>
     </View>
   );

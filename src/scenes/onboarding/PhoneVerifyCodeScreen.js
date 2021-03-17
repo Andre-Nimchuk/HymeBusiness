@@ -1,27 +1,12 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import {RouteProp} from '@react-navigation/native';
 /* 
 import {CognitoUser} from '@aws-amplify/auth'; */
 import Colors from '../../styles/Colors';
+import {Icon} from '@ui-kitten/components';
+/* import BackArrowHeader from '../../components/BackArrowHeader'; */
 
-/* type RootStackParamList = {
-  PhoneVerifyCode: {type: string; user: CognitoUser};
-};
-
-type PhoneVerifyCodeScreenRouteProp = RouteProp<
-  RootStackParamList,
-  'PhoneVerifyCode'
->;
-
-type Props = {
-  route: PhoneVerifyCodeScreenRouteProp;
-  navigation: any;
-}; */
-
-export default function PhoneVerifyCodeScreen(
-  {route, navigation} /* : Props */,
-) {
+export default function PhoneVerifyCodeScreen({route, navigation}) {
   /* const {sendCustomChallengeAnswer, resendSignupCode, handleLogin} = useAuth();
   const {t} = useTranslation(); */
 
@@ -59,11 +44,9 @@ export default function PhoneVerifyCodeScreen(
     <View style={{flex: 1}}>
       {/* <BackArrowHeader navigation={navigation} /> */}
       <View style={styles.container}>
-        <Text style={styles.h1}>
-          {/* {`${t(' */}Phone verification{/* ')}`} */}
-        </Text>
+        <Text style={styles.h1}>Phone verification</Text>
         <Text style={{marginBottom: 32}}>
-          {/* {`${t(' */}Enter code your received to {/* ')}`} */}
+          Enter code your received to
           <Text style={styles.labelTextStyle}>{user.username}</Text>
         </Text>
 
@@ -87,8 +70,6 @@ export default function PhoneVerifyCodeScreen(
 
         <TouchableOpacity
           onPress={() => {
-            setDisableResend(true);
-            setTimeout(() => setDisableResend(false), 3000);
             /* resendVerificationCode(); */
           }}
           disabled={disableResend}>
@@ -121,7 +102,7 @@ const styles = StyleSheet.create({
   },
   h1: {
     marginBottom: 3,
-    /* color: Colors.title, */
+    color: Colors.title,
     fontStyle: 'normal',
     fontWeight: '600',
     fontSize: 22,
@@ -130,7 +111,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 23,
     fontWeight: '500',
-    /* color: Colors.primary, */
+    color: Colors.primary,
   },
   cell: {
     width: 42,
@@ -140,15 +121,15 @@ const styles = StyleSheet.create({
     borderColor: '#E7E6E8',
     fontSize: 22,
     fontWeight: '700',
-    /* color: Colors.title, */
+    color: Colors.title,
   },
   focusCell: {
-    /* borderColor: Colors.primary,
-    color: Colors.primary, */
+    borderColor: Colors.primary,
+    color: Colors.primary,
   },
   wrongCell: {
-    /* borderColor: Colors.error,
-    color: Colors.error, */
+    borderColor: Colors.error,
+    color: Colors.error,
   },
   icon: {
     width: 15,

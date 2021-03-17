@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 /* import {useTranslation} from 'react-i18next'; */
 
@@ -37,9 +37,26 @@ function FlatButton({
   leftElement,
 }: any) {
   /* const {t} = useTranslation(); */
+  const [disableBtn, setDisableBtn] = useState(false);
+
+  const signIn = async () => {
+    if (!phoneNumber) return false;
+
+    await signInOrUp(phoneNumber)
+      .then(({user, type}) => {
+        goToNextScreen(user, type);
+      })
+      .catch((err: any) => console.log(err, 'signInError'));
+  };
 
   return (
-    <TouchableOpacity onPress={onPress} disabled={disabled}>
+    <TouchableOpacity
+      onPress={() => {
+        setDisableBtn(true);
+        setTimeout(() => setDisableBtn(false), 3000);
+        signIn();
+      }}
+      disabled={disabled}>
       <View
         style={{
           ...styles.btn,

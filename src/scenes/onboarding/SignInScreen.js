@@ -7,6 +7,7 @@ import CountryPicker, {
 } from 'react-native-country-picker-modal';
 import FlatButton from '../../components/FlatButton';
 import Colors from '../../styles/Colors';
+import {useNavigation} from '@react-navigation/native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -47,15 +48,21 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function SignInScreen() {
+export default function SignInScreen({navigation}) {
+  const {navigate} = useNavigation();
   const [phoneNumber, setPhoneNumber] = useState('+380');
   const [countryCode, setCountryCode] = useState('UA');
-  const [disableBtn, setDisableBtn] = useState(false);
 
   const onSelect = country => {
     setCountryCode(country.cca2);
     setPhoneNumber(`+${country.callingCode}`);
   };
+
+  const goToNextScreen = async (user: any, type: any) =>
+    navigate('PhoneVerifyCode', {
+      type,
+      user,
+    });
 
   return (
     <View style={styles.container}>
@@ -90,11 +97,8 @@ export default function SignInScreen() {
 
       <FlatButton
         title="Next"
-        disabled={disableBtn}
         onPress={() => {
-          setDisableBtn(true);
-          setTimeout(() => setDisableBtn(false), 3000);
-          signIn();
+          NavigationPreloadManager.push('PhoneVerifyCode');
         }}
         style={styles.buttonStyle}
       />
