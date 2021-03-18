@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {CheckBox, Input} from '@ui-kitten/components';
+
+import {useTranslation} from 'react-i18next';
+
 import Colors from '../../styles/Colors';
 
 /* import {useMutation} from '@apollo/client';
 
 import BackArrowHeader from 'components/BackArrowHeader';
 import FlatButton from 'components/FlatButton';
-
-import Colors from 'styles/Colors';
 
 import {UPDATE_MY_PROFILE} from '../../graphql/mutations';
 import {useAuth} from '../../providers/AuthProvider';
@@ -65,13 +66,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function NameScreen({navigation}: any) {
+export default function NameScreen({navigation}) {
   /* const {handleLogin} = useAuth(); */
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [wrongName, setWrongName] = useState(false);
   const [wrongSurName, setWrongSurName] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
+
+  const {t} = useTranslation();
 
   /* const {t} = useTranslation();
 
@@ -94,11 +97,7 @@ export default function NameScreen({navigation}: any) {
   }; */
 
   const wrongText = () => {
-    return (
-      <Text style={styles.wrongLabel}>
-        {/* {`${t(' */}Wrong format{/* ')}`} */}
-      </Text>
-    );
+    return <Text style={styles.wrongLabel}>{t('Wrong format')}</Text>;
   };
 
   return (
@@ -109,13 +108,10 @@ export default function NameScreen({navigation}: any) {
           {/* {`${t(' */}What is your name{/* ')}`} */}
         </Text>
         <Text style={{marginBottom: 32}}>
-          {/* {`${t(' */}We’re happy you to be part of our community :
-          {/* )')}`} */}
+          {t('We’re happy you to be part of our community :')}
         </Text>
 
-        <Text style={styles.labelTextStyle}>
-          {/* {`${t(' */}First Name{/* ')}`} */}
-        </Text>
+        <Text style={styles.labelTextStyle}>{t('First Name')}</Text>
         <Input
           style={{
             borderColor: wrongName ? Colors.error : 'rgba(28,26,47, 0.1)',
@@ -132,9 +128,7 @@ export default function NameScreen({navigation}: any) {
             else setWrongName(false);
           }}
         />
-        <Text style={styles.labelTextStyle}>
-          {/* {`${t(' */}Last Name{/* ')}`} */}
-        </Text>
+        <Text style={styles.labelTextStyle}>{'Last Name'}</Text>
         <Input
           style={{
             borderColor: wrongSurName ? Colors.error : 'rgba(28,26,47, 0.1)',
@@ -159,7 +153,7 @@ export default function NameScreen({navigation}: any) {
             setAcceptTerms(!acceptTerms);
           }}>
           {`${t('I agree to')}`}
-          <Text style={{color: Colors.pink}}>{`${t('Terms of Service')}`}</Text>
+          <Text style={{color: Colors.pink}}>{t('Terms of Service')}</Text>
         </CheckBox>
 
         <FlatButton

@@ -3,13 +3,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import MainTabNavigator from './MainTabNavigator';
+import HymeDetailsScreen from '../scenes/tabs/hyme/HymeDetailsScreen';
 
 import {
   SignInScreen,
   PhoneVerifyCodeScreen,
   NameScreen,
 } from '../scenes/onboarding';
-import HymeDetailsScreen from '../scenes/tabs/hyme/HymeDetailsScreen';
 
 const Stack = createStackNavigator();
 

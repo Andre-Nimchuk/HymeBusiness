@@ -6,10 +6,10 @@ import {useTranslation} from 'react-i18next';
 import Colors from '../../styles/Colors';
 
 import Search from '../../components/Search';
+import FlatButton from '../../components/FlatButton';
 
 import HymeAvatarPink from '../../assets/icons/svg-icons/HymeAvatarPink';
 import HymeAvatarBlue from '../../assets/icons/svg-icons/HymeAvatarBlue';
-import FlatButton from '../../components/FlatButton';
 
 const items = [
   {
@@ -26,55 +26,48 @@ const items = [
 
 export default function HymeScreen({navigation}) {
   const {t} = useTranslation();
-  const listItem = (item, index) => {
-    return (
-      <>
-        <TouchableOpacity onPress={() => navigation.push('HymeDetails')}>
-          <View style={styles.locBlock}>
-            {item.fixes > 0 ? (
-              <HymeAvatarPink style={{marginRight: 10}} />
-            ) : (
-              <HymeAvatarBlue style={{marginRight: 10}} />
-            )}
-            <View style={{flex: 1}}>
-              <Text style={{fontSize: 22, fontWeight: '600'}}>
-                {t(item.title)}
-              </Text>
-              <Text style={{color: '#6D6D7A'}}>{t(item.loacation)}</Text>
-              {item.fixes > 0 && (
-                <Text style={{color: '#FF6F66'}}>
-                  {item.fixes + t(' fixed needed')}
-                </Text>
-              )}
-            </View>
-            <Icon
-              style={styles.icon}
-              fill="#000"
-              name="arrow-ios-forward-outline"
-            />
-          </View>
-        </TouchableOpacity>
-      </>
-    );
-  };
+
+  const listItem = (item, index) => (
+    <TouchableOpacity onPress={() => navigation.push('HymeDetails')}>
+      <View style={styles.locBlock}>
+        {item.fixes > 0 ? (
+          <HymeAvatarPink style={{marginRight: 10}} />
+        ) : (
+          <HymeAvatarBlue style={{marginRight: 10}} />
+        )}
+        <View style={{flex: 1}}>
+          <Text style={styles.generTitle}>{t(item.title)}</Text>
+          <Text style={styles.subTitle}>{t(item.loacation)}</Text>
+          {item.fixes > 0 && (
+            <Text style={styles.errorTitle}>
+              {item.fixes + t(' fixed needed')}
+            </Text>
+          )}
+        </View>
+        <Icon
+          style={styles.icon}
+          fill="#000"
+          name="arrow-ios-forward-outline"
+        />
+      </View>
+    </TouchableOpacity>
+  );
 
   return (
-    <>
-      <FlatList
-        data={items}
-        style={styles.container}
-        showsVerticalScrollIndicator={false}
-        ListHeaderComponent={<Search title={'Hyme'} />}
-        renderItem={({item, index}) => listItem(item, index)}
-        ListFooterComponent={
-          <FlatButton
-            title="+ Add new Hyme"
-            onPress={() => {}}
-            style={styles.buttonStyle}
-          />
-        }
-      />
-    </>
+    <FlatList
+      data={items}
+      style={styles.container}
+      showsVerticalScrollIndicator={false}
+      ListHeaderComponent={<Search title={'Hyme'} />}
+      renderItem={({item, index}) => listItem(item, index)}
+      ListFooterComponent={
+        <FlatButton
+          title="+ Add new Hyme"
+          onPress={() => {}}
+          style={styles.buttonStyle}
+        />
+      }
+    />
   );
 }
 
@@ -83,13 +76,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  h1: {
-    marginTop: Platform.OS === 'ios' ? 50 : 25,
-    marginBottom: 3,
-    color: Colors.title,
-    fontStyle: 'normal',
-    fontWeight: '600',
+  generTitle: {
     fontSize: 22,
+    fontWeight: '600',
+    /* fontFamily: 'poppins', */
+    lineHeight: 33.5,
+    color: '#1C1A2F',
+  },
+  subTitle: {
+    color: '#6D6D7A',
+    lineHeight: 18.7,
+    /* fontFamily: 'roboto', */
+    fontWeight: '400',
+    fontSize: 12,
+  },
+  errorTitle: {
+    color: '#FF6F66',
+    lineHeight: 18.5,
+    fontSize: 12,
+    /* fontFamily: 'roboto', */
+    fontWeight: '400',
   },
   locBlock: {
     marginHorizontal: 21,
