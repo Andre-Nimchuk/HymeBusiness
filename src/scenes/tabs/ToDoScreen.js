@@ -8,6 +8,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 35,
   },
   h1: {
+    margin: 25,
+    marginTop: Platform.OS === 'ios' ? 50 : 25,
     marginBottom: 3,
     color: Colors.title,
     fontStyle: 'normal',

@@ -9,12 +9,14 @@ import {
   PhoneVerifyCodeScreen,
   NameScreen,
 } from '../scenes/onboarding';
+import HymeDetailsScreen from '../scenes/tabs/hyme/HymeDetailsScreen';
 
 const Stack = createStackNavigator();
 
 const AppStack = () => (
   <Stack.Navigator initialRouteName="Main" screenOptions={{headerShown: false}}>
     <Stack.Screen name="Main" component={MainTabNavigator} />
+    <Stack.Screen name="HymeDetails" component={HymeDetailsScreen} />
   </Stack.Navigator>
 );
 

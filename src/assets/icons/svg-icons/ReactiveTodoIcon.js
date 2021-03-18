@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {SvgXml} from 'react-native-svg';
 
-export default ({style, color}: any) => {
+export default ({style, color}) => {
   const xml = `
   <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect x="1" y="6" width="12" height="12" rx="3" stroke=${color} stroke-width="1.5"/>

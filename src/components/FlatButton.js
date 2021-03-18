@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-/* import {useTranslation} from 'react-i18next'; */
+import {useTranslation} from 'react-i18next';
 
 import Colors from '../styles/Colors';
 
@@ -35,8 +35,8 @@ function FlatButton({
   textStyle,
   rightElement,
   leftElement,
-}: any) {
-  /* const {t} = useTranslation(); */
+}) {
+  const {t} = useTranslation();
   const [disableBtn, setDisableBtn] = useState(false);
 
   return (
@@ -57,9 +57,7 @@ function FlatButton({
         {leftElement || rightElement ? (
           <View style={styles.side}>{leftElement && leftElement()}</View>
         ) : null}
-        <Text style={{...styles.text, ...textStyle}}>
-          {/* {`${t( */}Next{/* )}`} */}
-        </Text>
+        <Text style={{...styles.text, ...textStyle}}>{t(title)}</Text>
         {leftElement || rightElement ? (
           <View style={styles.side}>{rightElement && rightElement()}</View>
         ) : null}
