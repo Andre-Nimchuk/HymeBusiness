@@ -23,4 +23,6 @@ export default {
   tabIconDefault: '#ccc',
   tabIconSelected: tintColor,
   rating: '#FFD480',
+  clickButtonStyle: '#F5F7F9',
+  clickButtonTextStyle: '#171D3E',
 };

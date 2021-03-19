@@ -1,104 +1,131 @@
-/* import React from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
-import Colors from '../../styles/Colors';
-import {useTranslation} from 'react-i18next';
-
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 35,
-  },
-  h1: {
-    margin: 25,
-    marginTop: Platform.OS === 'ios' ? 50 : 25,
-    marginBottom: 3,
-    color: Colors.title,
-    fontStyle: 'normal',
-    fontWeight: '600',
-    fontSize: 22,
-  },
-});
-
-export default function ToDoScreen({navigation}) {
-  const {t} = useTranslation();
-  const listItem = (item, index) => {
-    return (
-      <View style={styles.wrapper}>
-        <View style={styles.container}>
-          <Text style={styles.h1}>{t('To-Do')}</Text>
-        </View>
-      </View>
-    );
-  };
-} */
 import React from 'react';
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ImageBackground,
+  ScrollView,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Icon} from '@ui-kitten/components';
 import {useTranslation} from 'react-i18next';
 
-import Colors from '../../styles/Colors';
+import ButtonSwitch from '../../components/SwitchButton';
 
-import Search from '../../components/Search';
-
-import HymeAvatarPink from '../../assets/icons/svg-icons/HymeAvatarPink';
-import HymeAvatarBlue from '../../assets/icons/svg-icons/HymeAvatarBlue';
-import FlatButton from '../../components/FlatButton';
+import AssignIcon from '../../assets/icons/svg-icons/AssignIcon';
+import CheckContractIcon from '../../assets/icons/svg-icons/CheckContractIcon';
+import DocumentIcon from '../../assets/icons/svg-icons/DetailsAvatar';
+import MoneyIcon from '../../assets/icons/svg-icons/DetailsAvatar';
 
 const items = [
   {
-    title: 'Colorado',
-    loacation: 'Amstelveen Netherlands',
-    fixes: 5,
+    title: 'Assign company',
+    subTitle: 'Colorado 22, Amstelveen',
+    icon: () => <AssignIcon style={{marginRight: 10}} />,
+    onPress: () => {},
+    data: '22 Apr',
   },
-  /* {
-    title: 'Witte de Withst..22',
-    loacation: 'Rotterdam, Netherlands',
-    fixes: 0,
-  }, */
+  {
+    title: 'Check contract',
+    subTitle: 'Witte de Withstraat 15, Amsterdam ',
+    icon: () => <DocumentIcon style={{marginRight: 10}} />,
+    onPress: () => {},
+    data: '22 Apr',
+  },
+  {
+    title: 'Approve check-in',
+    subTitle: 'Witte de Withstraat 15, Amsterdam ',
+    icon: () => <CheckContractIcon style={{marginRight: 10}} />,
+    onPress: () => {},
+    data: '22 Apr',
+  },
+  {
+    title: 'Sign contract',
+    subTitle: 'Witte de Withstraat 15, Amsterdam ',
+    icon: () => <MoneyIcon style={{marginRight: 10}} />,
+    onPress: () => {},
+    data: '22 Apr',
+  },
 ];
 
-export default function HymeScreen({navigation}) {
+export default function HymeDetailsScreen({navigation}) {
   const {t} = useTranslation();
-  const listItem = (item, index) => {
+  const ListItem = ({title, value}) => {
     return (
-      <View>
-        <Text>safjasflk</Text>
+      <View style={styles.row}>
+        <Text style={styles.label}>{`${t(title)}`}</Text>
+        {value && <Text style={styles.label}>{value}</Text>}
       </View>
     );
   };
-
   return (
-    <FlatList
-      data={items}
-      style={styles.container}
+    // <View style={styles.container}>
+    <ScrollView
       showsVerticalScrollIndicator={false}
-      ListHeaderComponent={<Text style={styles.titleSt}>To-Do</Text>}
-      renderItem={({item, index}) => listItem(item, index)}
-      ListFooterComponent={<></>}
-    />
+      contentContainerStyle={styles.container}>
+      <Text style={styles.titleSt}>To-Do</Text>
+      <View style={styles.blockWithButtons}>
+        <ButtonSwitch
+          style={styles.buttons}
+          titleLeft="Current"
+          titleRight="Completed"
+        />
+      </View>
+      <View>
+        {items.map(item => (
+          <TouchableOpacity onPress={item.onPress}>
+            <View style={styles.locBlock}>
+              {item.icon()}
+              <View style={{flex: 1}}>
+                <Text style={styles.generTitle}>{t(item.title)}</Text>
+                <Text style={styles.subTitle}>{t(item.subTitle)}</Text>
+              </View>
+              <Text style={styles.dataSt}>{t(item.data)}</Text>
+            </View>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </ScrollView>
+    // </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
   },
   titleSt: {
     margin: 25,
     marginTop: Platform.OS === 'ios' ? 50 : 25,
     fontSize: 28,
-    color: Colors.title,
-    // fontFamily:ßß∂ß 'poppins',
+    /* color: Colors.title, */
+    // fontFamily: 'poppins',
     fontWeight: '700',
   },
-  h1: {
-    marginTop: Platform.OS === 'ios' ? 50 : 25,
-    marginBottom: 3,
-    color: Colors.title,
-    fontStyle: 'normal',
+  generTitle: {
+    fontSize: 18,
     fontWeight: '600',
-    fontSize: 22,
+    /* fontFamily: 'poppins', */
+    lineHeight: 27.39,
+    color: '#1C1A2F',
   },
+  subTitle: {
+    color: '#6D6D7A',
+    lineHeight: 18.5,
+    /* fontFamily: 'roboto', */
+    fontWeight: '400',
+    fontSize: 12,
+  },
+  blockWithButtons: {
+    paddingLeft: 13,
+    paddingRight: 21,
+    paddingVertical: 21,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  buttons: {},
   locBlock: {
     marginHorizontal: 21,
     paddingLeft: 17,
@@ -115,7 +142,7 @@ const styles = StyleSheet.create({
       height: 5,
     },
     shadowOpacity: 0.2,
-    shadowRadius: 6.68,
+    shadowRadius: 7.68,
     elevation: 11,
     borderRadius: 10,
   },
@@ -123,14 +150,48 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
   },
-  pressStyle: {
-    marginHorizontal: 21,
-    paddingLeft: 17,
-    paddingRight: 21,
-    paddingVertical: 21,
-  },
-  buttonStyle: {
+  title: {
     marginTop: 25,
-    marginHorizontal: 21,
+    fontSize: 22,
+    color: '#1C1A2F',
+    /* fontFamily: 'poppins', */
+    fontWeight: '600',
+    lineHeight: 33,
+  },
+  subTitle: {
+    fontSize: 12,
+    color: '#6D6D7A',
+    /* fontFamily: 'roboto', */
+    fontWeight: '400',
+    lineHeight: 18,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginRight: 20,
+    height: 34,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f0f0f2',
+  },
+  label: {
+    fontSize: 14,
+    color: '#1C1A2F',
+    fontFamily: 'roboto',
+    fontWeight: '400',
+    lineHeight: 21,
+  },
+  item: {
+    marginRight: 15,
+  },
+  transparent: {
+    backgroundColor: 'transparent',
+  },
+  dataSt: {
+    fontSize: 12,
+    lineHeight: 18.26,
+    fontWeight: '400',
+    color: '#B9B6B8',
+    marginBottom: 18,
   },
 });

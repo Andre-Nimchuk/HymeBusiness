@@ -5,15 +5,89 @@ import CountryPicker, {
   CountryCode,
   Country,
 } from 'react-native-country-picker-modal';
+import {Icon} from '@ui-kitten/components';
 import FlatButton from '../../components/FlatButton';
 import Colors from '../../styles/Colors';
 import {useNavigation} from '@react-navigation/native';
+
+export default function SignInScreen({navigation}) {
+  const {navigate} = useNavigation();
+  const [phoneNumber, setPhoneNumber] = useState('+380');
+  const [countryCode, setCountryCode] = useState('UA');
+
+  const onSelect = country => {
+    setCountryCode(country.cca2);
+    setPhoneNumber(`+${country.callingCode}`);
+  };
+
+  const goToNextScreen = async (user, type) =>
+    navigate('PhoneVerifyCode', {
+      type,
+      user,
+    });
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Welcome to Hyme</Text>
+
+      <Text appearance="hint" style={{marginBottom: 32}}>
+        Insert your phone number to continue
+      </Text>
+
+      <View style={styles.row}>
+        <View style={styles.contrySection}>
+          <CountryPicker
+            withFlag
+            withFilter
+            withAlphaFilter
+            withCallingCode
+            withFlagButton
+            withEmoji={false}
+            {...{
+              countryCode,
+              onSelect,
+            }}
+          />
+          <Icon
+            style={styles.icon}
+            fill="#000"
+            name="arrow-ios-downward-outline"
+          />
+        </View>
+        <TextInput
+          style={styles.input}
+          keyboardType="phone-pad"
+          value={phoneNumber}
+          onChangeText={value => setPhoneNumber(value)}
+        />
+      </View>
+
+      <View style={{height: 35}} />
+
+      <FlatButton
+        title="Next"
+        onPress={() => {
+          navigation.push('PhoneVerifyCode');
+        }}
+        style={styles.buttonStyle}
+      />
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 35,
     backgroundColor: '#fff',
+  },
+  icon: {
+    width: 20,
+    height: 20,
+  },
+  contrySection: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   title: {
     marginTop: 70,
@@ -48,61 +122,3 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
   },
 });
-
-export default function SignInScreen({navigation}) {
-  const {navigate} = useNavigation();
-  const [phoneNumber, setPhoneNumber] = useState('+380');
-  const [countryCode, setCountryCode] = useState('UA');
-
-  const onSelect = country => {
-    setCountryCode(country.cca2);
-    setPhoneNumber(`+${country.callingCode}`);
-  };
-
-  const goToNextScreen = async (user, type) =>
-    navigate('PhoneVerifyCode', {
-      type,
-      user,
-    });
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome to Hyme</Text>
-
-      <Text appearance="hint" style={{marginBottom: 32}}>
-        Insert your phone number to continue
-      </Text>
-
-      <View style={styles.row}>
-        <CountryPicker
-          withFlag
-          withFilter
-          withAlphaFilter
-          withCallingCode
-          withFlagButton
-          withEmoji={false}
-          {...{
-            countryCode,
-            onSelect,
-          }}
-        />
-        <TextInput
-          style={styles.input}
-          keyboardType="phone-pad"
-          value={phoneNumber}
-          onChangeText={value => setPhoneNumber(value)}
-        />
-      </View>
-
-      <View style={{height: 35}} />
-
-      <FlatButton
-        title="Next"
-        onPress={() => {
-          navigation.push('PhoneVerifyCode');
-        }}
-        style={styles.buttonStyle}
-      />
-    </View>
-  );
-}

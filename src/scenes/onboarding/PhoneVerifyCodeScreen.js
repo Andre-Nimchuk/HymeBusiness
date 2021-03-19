@@ -43,7 +43,7 @@ export default function PhoneVerifyCodeScreen({route, navigation}) {
   //     });
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: '#fff'}}>
       <BackArrowHeader navigation={navigation} />
       <View style={styles.container}>
         <Text style={styles.h1}>Phone verification</Text>
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 35,
     backgroundColor: '#fff',
+    marginTop: 25,
   },
   h1: {
     marginBottom: 3,

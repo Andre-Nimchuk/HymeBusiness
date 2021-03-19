@@ -11,22 +11,43 @@ import {
 import {Icon} from '@ui-kitten/components';
 import {useTranslation} from 'react-i18next';
 
-import Colors from '../../../styles/Colors';
-
 import BackArrowHeader from '../../../components/BackArrowHeader';
 import BackArrowWhite from '../../../assets/icons/svg-icons/BackArrowWhite';
-import HymeAvatarPink from '../../../assets/icons/svg-icons/DetailsAvatar';
+import DetailsAvatar from '../../../assets/icons/svg-icons/DetailsAvatar';
+import FixItIcon from '../../../assets/icons/svg-icons/FixItIcon';
+import DocumentIcon from '../../../assets/icons/svg-icons/DocumentIcon';
+import MoneyIcon from '../../../assets/icons/svg-icons/MoneyIcon';
 
 const items = [
   {
-    title: 'Colorado',
-    loacation: 'Amstelveen Netherlands',
-    fixes: 5,
+    title: 'Details',
+    subTitle: 'Amstelveen Netherlands',
+    icon: () => <DetailsAvatar style={{marginRight: 10}} />,
+    onPress: 'DetailsAppartment',
   },
   {
-    title: 'Witte de Withst..22',
-    loacation: 'Rotterdam, Netherlands',
-    fixes: 0,
+    title: 'Lease',
+    subTitle: 'Rent & check-in contracts',
+    icon: () => <DocumentIcon style={{marginRight: 10}} />,
+    onPress: () => {
+      () => navigation.push('DetailsAppartment');
+    },
+  },
+  {
+    title: 'Fix it',
+    subTitle: 'No items to fix',
+    icon: () => <FixItIcon style={{marginRight: 10}} />,
+    onPress: () => {
+      () => navigation.push('DetailsAppartment');
+    },
+  },
+  {
+    title: 'Finances',
+    subTitle: '$850 paid for May',
+    icon: () => <MoneyIcon style={{marginRight: 10}} />,
+    onPress: () => {
+      () => navigation.push('DetailsAppartment');
+    },
   },
 ];
 
@@ -57,66 +78,22 @@ export default function HymeDetailsScreen({navigation}) {
           </ImageBackground>
         </View>
         <View style={styles.contentContainer}>
-          <TouchableOpacity onPress={() => navigation.push('HymeDetails')}>
-            <View style={styles.locBlock}>
-              <HymeAvatarPink style={{marginRight: 10}} />
-              <View style={{flex: 1}}>
-                <Text style={styles.generTitle}>{t('Details')}</Text>
-                <Text style={styles.subTitle}>
-                  {t('Amstelveen Netherlands')}
-                </Text>
+          {items.map(item => (
+            <TouchableOpacity onPress={() => navigation.push(item.onPress)}>
+              <View style={styles.locBlock}>
+                {item.icon()}
+                <View style={{flex: 1}}>
+                  <Text style={styles.generTitle}>{t(item.title)}</Text>
+                  <Text style={styles.subTitle}>{t(item.subTitle)}</Text>
+                </View>
+                <Icon
+                  style={styles.icon}
+                  fill="#000"
+                  name="arrow-ios-forward-outline"
+                />
               </View>
-              <Icon
-                style={styles.icon}
-                fill="#000"
-                name="arrow-ios-forward-outline"
-              />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push('HymeDetails')}>
-            <View style={styles.locBlock}>
-              <HymeAvatarPink style={{marginRight: 10}} />
-              <View style={{flex: 1}}>
-                <Text style={styles.generTitle}>{t('Lease')}</Text>
-                <Text style={styles.subTitle}>
-                  {t('Rent & check-in contracts')}
-                </Text>
-              </View>
-              <Icon
-                style={styles.icon}
-                fill="#000"
-                name="arrow-ios-forward-outline"
-              />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push('HymeDetails')}>
-            <View style={styles.locBlock}>
-              <HymeAvatarPink style={{marginRight: 10}} />
-              <View style={{flex: 1}}>
-                <Text style={styles.generTitle}>{t('Fix it')}</Text>
-                <Text style={styles.subTitle}>{t('No items to fix')}</Text>
-              </View>
-              <Icon
-                style={styles.icon}
-                fill="#000"
-                name="arrow-ios-forward-outline"
-              />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.push('HymeDetails')}>
-            <View style={styles.locBlock}>
-              <HymeAvatarPink style={{marginRight: 10}} />
-              <View style={{flex: 1}}>
-                <Text style={styles.generTitle}>{t('Finances')}</Text>
-                <Text style={styles.subTitle}>{t('$850 paid for May')}</Text>
-              </View>
-              <Icon
-                style={styles.icon}
-                fill="#000"
-                name="arrow-ios-forward-outline"
-              />
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          ))}
         </View>
       </ScrollView>
     </View>
@@ -137,7 +114,6 @@ const styles = StyleSheet.create({
     top: -60,
     borderTopLeftRadius: 18,
     borderTopRightRadius: 18,
-    paddingLeft: 28,
     backgroundColor: '#fff',
   },
   generTitle: {
