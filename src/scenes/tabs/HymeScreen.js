@@ -13,7 +13,7 @@ import HymeAvatarBlue from '../../assets/icons/svg-icons/HymeAvatarBlue';
 
 const items = [
   {
-    title: 'Colorado',
+    title: 'Colorado 22',
     loacation: 'Amstelveen Netherlands',
     fixes: 5,
   },
@@ -58,12 +58,14 @@ export default function HymeScreen({navigation}) {
       data={items}
       style={styles.container}
       showsVerticalScrollIndicator={false}
-      ListHeaderComponent={<Search title={'Hyme'} />}
+      ListHeaderComponent={
+        <Search style={styles.searchContainer} title={'Hyme'} />
+      }
       renderItem={({item, index}) => listItem(item, index)}
       ListFooterComponent={
         <FlatButton
           title="+ Add new Hyme"
-          onPress={() => {}}
+          onPress={() => navigation.push('AddNewHyme')}
           style={styles.buttonStyle}
         />
       }
@@ -75,6 +77,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  searchContainer: {
+    marginHorizontal: 25,
+    marginTop: 70,
   },
   generTitle: {
     fontSize: 22,
@@ -130,5 +136,6 @@ const styles = StyleSheet.create({
   buttonStyle: {
     marginTop: 25,
     marginHorizontal: 21,
+    height: 50,
   },
 });

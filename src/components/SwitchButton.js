@@ -4,18 +4,38 @@ import {useTranslation} from 'react-i18next';
 
 import Colors from '../styles/Colors';
 
-const ButtonSwitch = ({style, titleLeft, titleRight}) => {
+const ButtonSwitch = ({
+  leftElement,
+  rightElement,
+  onPress,
+  disabled,
+  style,
+  textStyle,
+  title,
+}) => {
   const {t} = useTranslation();
 
   return (
-    <View style={styles.switchsButton}>
-      <View style={styles.btn}>
-        <Text style={styles.text}>{t(titleLeft)}</Text>
+    <TouchableOpacity
+      onPress={onPress}
+      disabled={disabled}
+      style={styles.switchsButton}>
+      <View
+        style={{
+          ...styles.btn,
+          ...style,
+          justifyContent:
+            leftElement || rightElement ? 'space-between' : 'center',
+        }}>
+        {leftElement || rightElement ? (
+          <View style={styles.side}>{leftElement && leftElement()}</View>
+        ) : null}
+        <Text style={{...styles.text, ...textStyle}}>{`${t(title)}`}</Text>
+        {leftElement || rightElement ? (
+          <View style={styles.side}>{rightElement && rightElement()}</View>
+        ) : null}
       </View>
-      <View style={styles.btn}>
-        <Text style={{...styles.text}}>{t(titleRight)}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -27,7 +47,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 10,
     marginLeft: 8,
-    paddingRight: 8,
     justifyContent: 'center',
   },
   switchsButton: {
@@ -37,11 +56,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   text: {
-    color: '#fff',
+    color: '#FDFDFD',
     // fontFamily: 'roboto',
     fontWeight: '500',
     fontSize: 14,
     textAlign: 'center',
+    lineHeight: 16,
   },
 });
 

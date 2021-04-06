@@ -1,6 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, TextInput} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import CountryPicker, {
   CountryCode,
   Country,
@@ -38,20 +44,15 @@ export default function SignInScreen({navigation}) {
         <View style={styles.contrySection}>
           <CountryPicker
             withFlag
-            withFilter
+            withFlagButton
             withAlphaFilter
             withCallingCode
             withFlagButton
             withEmoji={false}
             {...{
-              countryCode,
               onSelect,
+              countryCode,
             }}
-          />
-          <Icon
-            style={styles.icon}
-            fill="#000"
-            name="arrow-ios-downward-outline"
           />
         </View>
         <TextInput

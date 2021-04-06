@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   ImageBackground,
   ScrollView,
@@ -17,6 +17,9 @@ import AssignIcon from '../../assets/icons/svg-icons/AssignIcon';
 import CheckContractIcon from '../../assets/icons/svg-icons/CheckContractIcon';
 import DocumentIcon from '../../assets/icons/svg-icons/DetailsAvatar';
 import MoneyIcon from '../../assets/icons/svg-icons/DetailsAvatar';
+import CheckContract from '../../assets/icons/svg-icons/CheckContract';
+import ApproveCheckIcon from '../../assets/icons/svg-icons/ApproveCheckIcon';
+import Colors from '../../styles/Colors';
 
 const items = [
   {
@@ -29,27 +32,32 @@ const items = [
   {
     title: 'Check contract',
     subTitle: 'Witte de Withstraat 15, Amsterdam ',
-    icon: () => <DocumentIcon style={{marginRight: 10}} />,
+    icon: () => (
+      <CheckContractIcon style={{marginRight: 10}}></CheckContractIcon>
+    ),
     onPress: () => {},
     data: '22 Apr',
   },
   {
     title: 'Approve check-in',
     subTitle: 'Witte de Withstraat 15, Amsterdam ',
-    icon: () => <CheckContractIcon style={{marginRight: 10}} />,
+    icon: () => <ApproveCheckIcon style={{marginRight: 10}}></ApproveCheckIcon>,
     onPress: () => {},
     data: '22 Apr',
   },
   {
     title: 'Sign contract',
     subTitle: 'Witte de Withstraat 15, Amsterdam ',
-    icon: () => <MoneyIcon style={{marginRight: 10}} />,
+    icon: () => (
+      <CheckContractIcon style={{marginRight: 10}}></CheckContractIcon>
+    ),
     onPress: () => {},
     data: '22 Apr',
   },
 ];
 
 export default function HymeDetailsScreen({navigation}) {
+  const [active, setActive] = useState(true);
   const {t} = useTranslation();
   const ListItem = ({title, value}) => {
     return (
@@ -60,46 +68,54 @@ export default function HymeDetailsScreen({navigation}) {
     );
   };
   return (
-    // <View style={styles.container}>
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.container}>
-      <Text style={styles.titleSt}>To-Do</Text>
-      <View style={styles.blockWithButtons}>
-        <ButtonSwitch
-          style={styles.buttons}
-          titleLeft="Current"
-          titleRight="Completed"
-        />
-      </View>
-      <View>
-        {items.map(item => (
-          <TouchableOpacity onPress={item.onPress}>
-            <View style={styles.locBlock}>
-              {item.icon()}
-              <View style={{flex: 1}}>
-                <Text style={styles.generTitle}>{t(item.title)}</Text>
-                <Text style={styles.subTitle}>{t(item.subTitle)}</Text>
+    <View style={styles.container}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.container}>
+        <Text style={styles.titleSt}>To-Do</Text>
+        <View style={styles.blockWithButtons}>
+          <ButtonSwitch
+            title="Current"
+            style={active ? styles.activeBtn : styles.btn}
+            textStyle={{color: active ? '#fff' : '#9CA0AE'}}
+            onPress={() => setActive(true)}
+          />
+          <ButtonSwitch
+            title="Completed"
+            style={!active ? styles.activeBtn : styles.btn}
+            textStyle={{color: !active ? '#fff' : '#9CA0AE'}}
+            onPress={() => setActive(false)}
+          />
+        </View>
+        <View>
+          {items.map(item => (
+            <TouchableOpacity onPress={item.onPress}>
+              <View style={styles.locBlock}>
+                {item.icon()}
+                <View style={{flex: 1}}>
+                  <Text style={styles.generTitle}>{t(item.title)}</Text>
+                  <Text style={styles.subTitle}>{t(item.subTitle)}</Text>
+                </View>
+                <Text style={styles.dataSt}>{t(item.data)}</Text>
               </View>
-              <Text style={styles.dataSt}>{t(item.data)}</Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </View>
-    </ScrollView>
-    // </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
+    flex: 1,
   },
   titleSt: {
-    margin: 25,
-    marginTop: Platform.OS === 'ios' ? 50 : 25,
+    marginHorizontal: 25,
+    marginTop: 70,
     fontSize: 28,
-    /* color: Colors.title, */
+    color: Colors.title,
     // fontFamily: 'poppins',
     fontWeight: '700',
   },
@@ -109,6 +125,13 @@ const styles = StyleSheet.create({
     /* fontFamily: 'poppins', */
     lineHeight: 27.39,
     color: '#1C1A2F',
+    marginBottom: 5,
+  },
+  btn: {
+    backgroundColor: '#F5F7F9',
+  },
+  checkContract: {
+    zIndex: 10,
   },
   subTitle: {
     color: '#6D6D7A',
@@ -129,12 +152,13 @@ const styles = StyleSheet.create({
   locBlock: {
     marginHorizontal: 21,
     paddingLeft: 17,
+    height: 98,
     paddingRight: 21,
     paddingVertical: 21,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 15,
+    marginTop: 10,
     backgroundColor: '#fff',
     shadowColor: '#000',
     shadowOffset: {
@@ -192,6 +216,6 @@ const styles = StyleSheet.create({
     lineHeight: 18.26,
     fontWeight: '400',
     color: '#B9B6B8',
-    marginBottom: 18,
+    marginBottom: 22,
   },
 });

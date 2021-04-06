@@ -5,6 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import MainTabNavigator from './MainTabNavigator';
 import HymeDetailsScreen from '../scenes/tabs/hyme/HymeDetailsScreen';
 import DetailsAppartmentScreen from '../scenes/tabs/details/DetailsAppartmentScreen';
+import AddNewHyme from '../scenes/tabs/newHyme/AddNewHyme';
 
 import {
   SignInScreen,
@@ -22,6 +23,7 @@ const AppStack = () => (
       name="DetailsAppartment"
       component={DetailsAppartmentScreen}
     />
+    <Stack.Screen name="AddNewHyme" component={AddNewHyme} />
   </Stack.Navigator>
 );
 

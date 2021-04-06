@@ -81,7 +81,7 @@ export default function HymeDetailsScreen({navigation}) {
           {items.map(item => (
             <TouchableOpacity onPress={() => navigation.push(item.onPress)}>
               <View style={styles.locBlock}>
-                {item.icon()}
+                <View style={styles.iconsMenu}>{item.icon()}</View>
                 <View style={{flex: 1}}>
                   <Text style={styles.generTitle}>{t(item.title)}</Text>
                   <Text style={styles.subTitle}>{t(item.subTitle)}</Text>
@@ -112,9 +112,13 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     top: -60,
-    borderTopLeftRadius: 18,
-    borderTopRightRadius: 18,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
     backgroundColor: '#fff',
+  },
+  iconsMenu: {
+    paddingBottom: 5,
+    marginRight: 10,
   },
   generTitle: {
     fontSize: 14,
@@ -139,13 +143,13 @@ const styles = StyleSheet.create({
   },
   locBlock: {
     marginHorizontal: 21,
+    marginTop: 23,
     paddingLeft: 17,
     paddingRight: 21,
     paddingVertical: 21,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 15,
     backgroundColor: '#fff',
     shadowColor: '#000',
     shadowOffset: {
@@ -160,6 +164,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 24,
     height: 24,
+    marginBottom: 8,
   },
   title: {
     marginTop: 25,

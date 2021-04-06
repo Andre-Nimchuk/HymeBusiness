@@ -14,11 +14,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: '#fff',
+    color: '#FDFDFD',
     // fontFamily: 'roboto',
     fontWeight: '700',
-    fontSize: 17,
+    fontSize: 15,
     textAlign: 'center',
+    lineHeight: 17,
   },
   side: {
     width: '20%',
