@@ -6,6 +6,8 @@ import MainTabNavigator from './MainTabNavigator';
 import HymeDetailsScreen from '../scenes/tabs/hyme/HymeDetailsScreen';
 import DetailsAppartmentScreen from '../scenes/tabs/details/DetailsAppartmentScreen';
 import AddNewHyme from '../scenes/tabs/newHyme/AddNewHyme';
+import EditHymeDetails from '../scenes/tabs/newHyme/EditHymeDetails';
+/* import {useAuth} from '../../providers/AuthProvider'; */
 
 import {
   SignInScreen,
@@ -24,6 +26,7 @@ const AppStack = () => (
       component={DetailsAppartmentScreen}
     />
     <Stack.Screen name="AddNewHyme" component={AddNewHyme} />
+    <Stack.Screen name="EditHymeDetails" component={EditHymeDetails} />
   </Stack.Navigator>
 );
 
@@ -52,7 +55,7 @@ export default function AppNavigator() {
   }, [authenticateUser]); */
   return (
     <NavigationContainer>
-      {true ? <AppStack /> : <OnboardingStack />}
+      {true ? <OnboardingStack /> : <AppStack />}
     </NavigationContainer>
   );
 }

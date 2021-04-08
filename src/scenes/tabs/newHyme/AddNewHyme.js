@@ -19,7 +19,7 @@ export default function AddNewHyme({navigation}) {
   const [text, onChangeText] = React.useState([
     {search: ''},
     {address: ''},
-    {number: ''},
+    {houseNumber: ''},
     {city: ''},
     {code: ''},
     {state: ''},
@@ -110,7 +110,7 @@ export default function AddNewHyme({navigation}) {
           />
           <FlatButton
             title="+ Add"
-            onPress={() => navigation.push('')}
+            onPress={() => navigation.push('EditHymeDetails')}
             style={styles.buttonStyle}
           />
         </View>
