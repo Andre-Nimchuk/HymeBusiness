@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   View,
@@ -14,28 +14,55 @@ import CountryPicker, {
 import {Icon} from '@ui-kitten/components';
 import FlatButton from '../../components/FlatButton';
 import Colors from '../../styles/Colors';
+import CarrierInfo from 'react-native-carrier-info';
 import {useNavigation} from '@react-navigation/native';
+import {useAuth} from '../../providers/AuthProvider';
 
 export default function SignInScreen({navigation}) {
+  const {signInOrUp} = useAuth();
   const {navigate} = useNavigation();
   const [phoneNumber, setPhoneNumber] = useState('+380');
   const [countryCode, setCountryCode] = useState('UA');
+  const [disableBtn, setDisableBtn] = useState(false);
+
+  useEffect(() => {
+    const carrierInfoAsync = async () => {
+      CarrierInfo.isoCountryCode()
+        .then(result => {
+          console.log(result);
+        })
+        .catch(err => console.log(err));
+    };
+
+    carrierInfoAsync();
+  }, []);
 
   const onSelect = country => {
     setCountryCode(country.cca2);
     setPhoneNumber(`+${country.callingCode}`);
   };
 
-  const goToNextScreen = async (user, type) =>
+  const goToNextScreen = async (user, type) => {
+    console.log(user, 'useruseruseruseruseruseruseruseruser');
+    console.log(type, 'typetypetypetypetypetype');
     navigate('PhoneVerifyCode', {
       type,
       user,
     });
+  };
 
+  const signIn = async () => {
+    if (!phoneNumber) return false;
+
+    await signInOrUp(phoneNumber)
+      .then(({user, type}) => {
+        goToNextScreen(user, type);
+      })
+      .catch(err => console.log(err, 'signInError'));
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Hyme</Text>
-
       <Text appearance="hint" style={{marginBottom: 32}}>
         Insert your phone number to continue
       </Text>
@@ -44,14 +71,14 @@ export default function SignInScreen({navigation}) {
         <View style={styles.contrySection}>
           <CountryPicker
             withFlag
-            withFlagButton
+            withFilter
             withAlphaFilter
             withCallingCode
             withFlagButton
             withEmoji={false}
             {...{
-              onSelect,
               countryCode,
+              onSelect,
             }}
           />
         </View>
@@ -68,7 +95,9 @@ export default function SignInScreen({navigation}) {
       <FlatButton
         title="Next"
         onPress={() => {
-          navigation.push('PhoneVerifyCode');
+          setDisableBtn(true);
+          setTimeout(() => setDisableBtn(false), 3000);
+          signIn();
         }}
         style={styles.buttonStyle}
       />

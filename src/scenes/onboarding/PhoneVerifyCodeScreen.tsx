@@ -1,46 +1,63 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-/* 
-import {CognitoUser} from '@aws-amplify/auth'; */
+import {RouteProp} from '@react-navigation/native';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import Colors from '../../styles/Colors';
 import {Icon} from '@ui-kitten/components';
 import BackArrowHeader from '../../components/BackArrowHeader';
 import {useTranslation} from 'react-i18next';
+import {CognitoUser} from '@aws-amplify/auth';
+import {useAuth} from '../../providers/AuthProvider';
+
+type RootStackParamList = {
+  PhoneVerifyCode: {type: string; user: CognitoUser};
+};
+
+type PhoneVerifyCodeScreenRouteProp = RouteProp<
+  RootStackParamList,
+  'PhoneVerifyCode'
+>;
+
+type Props = {
+  route: PhoneVerifyCodeScreenRouteProp;
+  navigation: any;
+};
 
 export default function PhoneVerifyCodeScreen({route, navigation}) {
-  /* const {sendCustomChallengeAnswer, resendSignupCode, handleLogin} = useAuth(); */
+  const {sendCustomChallengeAnswer, resendSignupCode, handleLogin} = useAuth();
+
   const {t} = useTranslation();
 
   const [disableResend, setDisableResend] = useState(false);
   const [wrongCode, setWrongCode] = useState(false);
-  // const authType = route.params?.type;
-  // const user = route.params?.user;
+  const authType = route.params?.type;
+  const user = route.params?.user;
+  console.log(route.params, 'asdasdasd');
 
-  // const verifySignupCode = code =>
-  //   sendCustomChallengeAnswer(user, code)
-  //     .then(auth => {
-  //       if (auth.attributes === undefined) {
-  //         navigation.goBack();
-  //         return;
-  //       }
+  const verifySignupCode = code =>
+    sendCustomChallengeAnswer(user, code)
+      .then(auth => {
+        if (auth.attributes === undefined) {
+          navigation.goBack();
+          return;
+        }
 
-  //       if (authType === 'signUp') navigation.navigate('Name');
-  //       else handleLogin({token: auth.signInUserSession.accessToken.jwtToken});
-  //     })
-  //     .catch(err => {
-  //       setWrongCode(true);
-  //       console.log('error', err);
-  //     });
+        if (authType === 'signUp') navigation.navigate('Name');
+        else handleLogin({token: auth.signInUserSession.accessToken.jwtToken});
+      })
+      .catch(err => {
+        setWrongCode(true);
+        console.log('error', err);
+      });
 
-  // const resendVerificationCode = async () =>
-  //   resendSignupCode(user.username)
-  //     .then(res => {
-  //       console.log('code resent successfully', res);
-  //     })
-  //     .catch(e => {
-  //       console.log(e);
-  //     });
+  const resendVerificationCode = async () =>
+    resendSignupCode(user.username)
+      .then(res => {
+        console.log('code resent successfully', res);
+      })
+      .catch(e => {
+        console.log(e);
+      });
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
@@ -65,13 +82,15 @@ export default function PhoneVerifyCodeScreen({route, navigation}) {
           codeInputHighlightStyle={styles.focusCell}
           onCodeChanged={() => setWrongCode(false)}
           onCodeFilled={code => {
-            // verifySignupCode(code);
+            verifySignupCode(code);
             console.log(`Code is ${code}, you are good to go!`);
           }}
         />
 
         <TouchableOpacity
           onPress={() => {
+            setDisableResend(true);
+            setTimeout(() => setDisableResend(false), 3000);
             resendVerificationCode();
           }}
           disabled={disableResend}>

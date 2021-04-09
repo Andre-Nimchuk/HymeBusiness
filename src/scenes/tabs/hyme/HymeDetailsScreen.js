@@ -2,7 +2,6 @@ import React from 'react';
 import {
   ImageBackground,
   ScrollView,
-  FlatList,
   StyleSheet,
   Text,
   TouchableOpacity,

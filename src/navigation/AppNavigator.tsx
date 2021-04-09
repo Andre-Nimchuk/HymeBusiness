@@ -7,7 +7,7 @@ import HymeDetailsScreen from '../scenes/tabs/hyme/HymeDetailsScreen';
 import DetailsAppartmentScreen from '../scenes/tabs/details/DetailsAppartmentScreen';
 import AddNewHyme from '../scenes/tabs/newHyme/AddNewHyme';
 import EditHymeDetails from '../scenes/tabs/newHyme/EditHymeDetails';
-/* import {useAuth} from '../../providers/AuthProvider'; */
+import {useAuth} from '../../src/providers/AuthProvider';
 
 import {
   SignInScreen,
@@ -41,7 +41,7 @@ const OnboardingStack = () => (
 );
 
 export default function AppNavigator() {
-  /* const {authenticateUser, state} = useAuth();
+  const {authenticateUser, state} = useAuth();
   useEffect(() => {
     const bootstrapAsync = async () => {
       try {
@@ -52,7 +52,7 @@ export default function AppNavigator() {
     };
 
     bootstrapAsync();
-  }, [authenticateUser]); */
+  }, [authenticateUser]);
   return (
     <NavigationContainer>
       {true ? <OnboardingStack /> : <AppStack />}

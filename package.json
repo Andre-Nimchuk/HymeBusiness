@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@apollo/client": "^3.3.14",
     "@aws-amplify/auth": "^3.4.29",
     "@eva-design/eva": "^2.0.0",
     "@react-native-community/async-storage": "^1.12.1",
@@ -26,6 +27,7 @@
     "react-i18next": "^11.8.10",
     "react-native": "0.64.0",
     "react-native-bootsplash": "^3.2.0",
+    "react-native-carrier-info": "^1.1.2",
     "react-native-country-picker-modal": "^2.0.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-reanimated": "^2.0.0",
@@ -36,7 +38,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.13.10",
-    "@babel/runtime": "7.13.10",
+    "@babel/runtime": "^7.13.10",
     "@react-native-community/eslint-config": "2.0.0",
     "babel-jest": "26.6.3",
     "babel-preset-react-native": "^4.0.1",

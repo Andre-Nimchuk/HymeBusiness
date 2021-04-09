@@ -6,15 +6,16 @@ import {useTranslation} from 'react-i18next';
 
 import Colors from '../../styles/Colors';
 
-/* import {useMutation} from '@apollo/client';
+import {useMutation} from '@apollo/client';
 
-import BackArrowHeader from 'components/BackArrowHeader';
-import FlatButton from 'components/FlatButton';
+/* import BackArrowHeader from 'components/BackArrowHeader'; */
+/* import FlatButton from 'components/FlatButton'; */
 
 import {UPDATE_MY_PROFILE} from '../../graphql/mutations';
 import {useAuth} from '../../providers/AuthProvider';
-import {useTranslation} from 'react-i18next'; */
-
+// import {useTranslation} from 'react-i18next';
+// import {UPDATE_MY_PROFILE} from '../../graphql/mutations';
+// import {useAuth} from '../../providers/AuthProvider';
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
 });
 
 export default function NameScreen({navigation}) {
-  /* const {handleLogin} = useAuth(); */
+  const {handleLogin} = useAuth();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [wrongName, setWrongName] = useState(false);
@@ -75,8 +76,6 @@ export default function NameScreen({navigation}) {
   const [acceptTerms, setAcceptTerms] = useState(false);
 
   const {t} = useTranslation();
-
-  /* const {t} = useTranslation();
 
   const [updateMyProfile] = useMutation(UPDATE_MY_PROFILE, {
     onCompleted: () => {
@@ -94,7 +93,7 @@ export default function NameScreen({navigation}) {
         },
       },
     });
-  }; */
+  };
 
   const wrongText = () => {
     return <Text style={styles.wrongLabel}>{t('Wrong format')}</Text>;
