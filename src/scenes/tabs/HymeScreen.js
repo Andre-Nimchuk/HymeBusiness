@@ -85,14 +85,14 @@ const styles = StyleSheet.create({
   generTitle: {
     fontSize: 22,
     fontWeight: '600',
-    /* fontFamily: 'poppins', */
+    fontFamily: 'poppins',
     lineHeight: 33.5,
     color: '#1C1A2F',
   },
   subTitle: {
     color: '#6D6D7A',
     lineHeight: 18.7,
-    /* fontFamily: 'roboto', */
+    fontFamily: 'roboto',
     fontWeight: '400',
     fontSize: 12,
   },
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     color: '#FF6F66',
     lineHeight: 18.5,
     fontSize: 12,
-    /* fontFamily: 'roboto', */
+    fontFamily: 'roboto',
     fontWeight: '400',
   },
   locBlock: {

@@ -169,13 +169,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 21,
     color: Colors.primary,
-    // fontFamily: 'poppins',
+    fontFamily: 'poppins',
     fontWeight: '500',
   },
   titleSt: {
     fontSize: 12,
     lineHeight: 18,
-    // fontFamily: 'roboto',
+    fontFamily: 'roboto',
     fontWeight: '500',
     color: '#6D6D7A',
   },
@@ -205,6 +205,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 21,
     fontWeight: '500',
-    // fontFamily: 'poppins',
+    fontFamily: 'poppins',
   },
 });

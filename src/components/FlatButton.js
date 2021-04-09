@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#FDFDFD',
-    // fontFamily: 'roboto',
+    fontFamily: 'roboto',
     fontWeight: '700',
     fontSize: 15,
     textAlign: 'center',

@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     fontWeight: '500',
     color: Colors.subTitle,
-    // fontFamily: 'roboto',
+    fontFamily: 'roboto',
   },
   inputText: {
     fontSize: 16,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   wrongLabel: {
     fontSize: 12,
-    // fontFamily: 'roboto',
+    fontFamily: 'roboto',
     color: Colors.error,
     lineHeight: 14,
   },
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     marginTop: 28,
     marginBottom: 44,
     fontSize: 14,
-    // fontFamily: 'roboto',
+    fontFamily: 'roboto',
     color: Colors.title,
     lineHeight: 20,
     paddingLeft: 7,

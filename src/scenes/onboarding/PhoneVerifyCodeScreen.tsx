@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     height: 15,
   },
   resendBtn: {
-    // fontFamily: 'roboto',
+    fontFamily: 'roboto',
     fontSize: 14,
     justifyContent: 'center',
     alignItems: 'center',

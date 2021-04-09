@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
   h1: {
     color: Colors.title,
-    // fontFamily: 'poppins',
+    fontFamily: 'poppins',
     fontWeight: '700',
     fontSize: 28,
   },
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   listText: {
     fontSize: 16,
     color: Colors.title,
-    // fontFamily: 'poppins',
+    fontFamily: 'poppins',
     lineHeight: 25,
     fontWeight: '500',
   },

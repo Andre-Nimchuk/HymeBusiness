@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     color: Colors.title,
-    // fontFamily:ßß∂ß 'poppins',
+    fontFamily: 'poppins',
     fontWeight: '700',
   },
   icon: {

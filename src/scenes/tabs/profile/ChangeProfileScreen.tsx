@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     fontWeight: '500',
     color: '#6D6D7A',
-    // fontFamily: 'roboto',
+    fontFamily: 'roboto',
   },
   input: {
     borderColor: 'rgba(28,26,47, 0.1)',

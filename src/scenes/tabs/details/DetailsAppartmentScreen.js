@@ -174,14 +174,14 @@ const styles = StyleSheet.create({
   },
   titleSt: {
     fontSize: 28,
-    /* color: Colors.title, */
-    // fontFamily: 'poppins',
+    color: Colors.title,
+    fontFamily: 'poppins',
     fontWeight: '700',
   },
   subTitle: {
     color: '#6D6D7A',
     lineHeight: 18.5,
-    /* fontFamily: 'roboto', */
+    fontFamily: 'roboto',
     marginTop: 10,
     fontWeight: '400',
     fontSize: 12,
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     color: '#1C1A2F',
-    // fontFamily: 'roboto',
+    fontFamily: 'roboto',
     fontWeight: '400',
     lineHeight: 21,
   },
@@ -249,14 +249,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 21,
     fontWeight: '500',
-    // fontFamily: 'poppins',
+    fontFamily: 'poppins',
   },
 
   addText: {
     fontSize: 14,
     lineHeight: 21,
     color: Colors.primary,
-    // fontFamily: 'roboto',
+    fontFamily: 'roboto',
     fontWeight: '500',
   },
   underLine: {
@@ -273,13 +273,13 @@ const styles = StyleSheet.create({
 
   informationTitle: {
     marginBottom: 5,
-    // fontFamily: 'roboto',
+    fontFamily: 'roboto',
     fontWeight: '400',
     lineHeight: 33,
   },
 
   informationSubTitle: {
-    // fontFamily: 'roboto',
+    fontFamily: 'roboto',
     fontWeight: '400',
     lineHeight: 33,
   },
@@ -290,6 +290,7 @@ const styles = StyleSheet.create({
   },
 
   buttonStyle: {
+    fontFamily: 'roboto',
     borderRadius: 10,
     marginTop: 20,
     height: 50,

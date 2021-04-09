@@ -116,13 +116,13 @@ const styles = StyleSheet.create({
     marginTop: 70,
     fontSize: 28,
     color: Colors.title,
-    // fontFamily: 'poppins',
+    fontFamily: 'poppins',
     fontWeight: '700',
   },
   generTitle: {
     fontSize: 18,
     fontWeight: '600',
-    /* fontFamily: 'poppins', */
+    fontFamily: 'poppins',
     lineHeight: 27.39,
     color: '#1C1A2F',
     marginBottom: 5,
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   subTitle: {
     color: '#6D6D7A',
     lineHeight: 18.5,
-    /* fontFamily: 'roboto', */
+    fontFamily: 'roboto',
     fontWeight: '400',
     fontSize: 12,
   },
@@ -178,14 +178,14 @@ const styles = StyleSheet.create({
     marginTop: 25,
     fontSize: 22,
     color: '#1C1A2F',
-    /* fontFamily: 'poppins', */
+    fontFamily: 'poppins',
     fontWeight: '600',
     lineHeight: 33,
   },
   subTitle: {
     fontSize: 12,
     color: '#6D6D7A',
-    /* fontFamily: 'roboto', */
+    fontFamily: 'roboto',
     fontWeight: '400',
     lineHeight: 18,
   },
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     color: '#1C1A2F',
-    // fontFamily: 'roboto',
+    fontFamily: 'roboto',
     fontWeight: '400',
     lineHeight: 21,
   },
