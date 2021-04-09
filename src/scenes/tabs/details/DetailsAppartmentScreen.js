@@ -25,55 +25,90 @@ export default function DetailsAppartmentScreen({navigation}) {
     {
       title: 'Construction year',
       subTitle: '1980',
-      underLine: () => {
-        <View style={styles.underLine}></View>;
-      },
+      underLine: () => <View style={styles.underLine}></View>,
     },
     {
       title: 'Surface area',
       subTitle: '130',
+      underLine: () => <View style={styles.underLine}></View>,
     },
     {
       title: 'Rooms',
       subTitle: '5',
+      underLine: () => <View style={styles.underLine}></View>,
     },
     {
       title: 'Bathrooms',
       subTitle: '2',
+      underLine: () => <View style={styles.underLine}></View>,
     },
     {
       title: 'Bedrooms',
       subTitle: '4',
+      underLine: () => <View style={styles.underLine}></View>,
     },
     {
       title: 'Floors',
       subTitle: '2',
+      underLine: () => <View style={styles.underLine}></View>,
     },
     {
       title: 'Parkings',
       subTitle: '2',
+      underLine: () => {},
     },
   ];
+
+  const types = [
+    {
+      title: 'Unit',
+      subTitle: 'house',
+      underLine: () => <View style={styles.underLine}></View>,
+    },
+    {
+      title: 'Property',
+      subTitle: 'single',
+      underLine: () => {},
+    },
+  ];
+
   const {t} = useTranslation();
+
   const ListItem = (item, index) => {
     console.log(item);
     return (
       <>
         <View style={styles.informationContainer}>
           <View style={styles.textLineStyle}>
-            <Text style={{marginBottom: 10}}>{item.title}</Text>
-            <Text>{item.subTitle}</Text>
+            <Text style={styles.informationTitle}>{item.title}</Text>
+            <Text style={styles.informationSubTitle}>{item.subTitle}</Text>
           </View>
         </View>
-        item.underLine
+        {item.underLine()}
       </>
     );
   };
+
+  const TypeItem = (item, index) => {
+    console.log(item);
+    return (
+      <>
+        <View style={styles.informationContainer}>
+          <View style={styles.textLineStyle}>
+            <Text style={styles.informationTitle}>{item.title}</Text>
+            <Text style={styles.informationSubTitle}>{item.subTitle}</Text>
+          </View>
+        </View>
+        {item.underLine()}
+      </>
+    );
+  };
+
   return (
     <>
       <View style={{flex: 1, backgroundColor: '#fff'}}>
-        <BackArrowHeader navigation={navigation} />
         <ScrollView showsVerticalScrollIndicator={false}>
+          <BackArrowHeader navigation={navigation} />
           <View style={styles.container}>
             <Text style={styles.titleSt}>Colorado 22</Text>
             <Text style={styles.subTitle}>Amstelveen Netherlands, #12345</Text>
@@ -96,7 +131,6 @@ export default function DetailsAppartmentScreen({navigation}) {
 
           <View style={styles.informationContainer}>
             <Text style={{marginBottom: 10}}>Energy label</Text>
-            <View style={styles.underLine}></View>
           </View>
           <View style={styles.underLine}></View>
 
@@ -105,52 +139,14 @@ export default function DetailsAppartmentScreen({navigation}) {
             renderItem={({item, index}) => ListItem(item, index)}
           />
 
-          {/*  <View style={styles.underLine}></View>
-          <View style={styles.informationContainer}>
-            <View style={styles.textLineStyle}>
-              <Text style={{marginBottom: 10}}>Construction year</Text>
-              <Text>1980</Text>
-            </View>
-          </View>
-          <View style={styles.underLine}></View>
-          <View style={styles.informationContainer}>
-            <View style={styles.textLineStyle}>
-              <Text style={{marginBottom: 10}}>Construction year</Text>
-              <Text>1980</Text>
-            </View>
-          </View>
-          <View style={styles.underLine}></View>
-          <View style={styles.informationContainer}>
-            <View style={styles.textLineStyle}>
-              <Text style={{marginBottom: 10}}>Construction year</Text>
-              <Text>1980</Text>
-            </View>
-          </View>
-          <View style={styles.underLine}></View>
-          <View style={styles.informationContainer}>
-            <View style={styles.textLineStyle}>
-              <Text style={{marginBottom: 10}}>Construction year</Text>
-              <Text>1980</Text>
-            </View>
-          </View>
-          <View style={styles.underLine}></View>
-          <View style={styles.informationContainer}>
-            <View style={styles.textLineStyle}>
-              <Text style={{marginBottom: 10}}>Construction year</Text>
-              <Text>1980</Text>
-            </View>
-          </View>
-          <View style={styles.underLine}></View>
-          <View style={styles.informationContainer}>
-            <View style={styles.textLineStyle}>
-              <Text style={{marginBottom: 10}}>Construction year</Text>
-              <Text>1980</Text>
-            </View>
-          </View> */}
-
           <View style={styles.typeLine}>
             <Text style={styles.textInformationTab}>{`${t('Type')}`}</Text>
           </View>
+
+          <FlatList
+            data={types}
+            renderItem={({item, index}) => TypeItem(item, index)}
+          />
 
           <View style={styles.firstSectionContainer}>
             <FlatButton
@@ -168,16 +164,15 @@ export default function DetailsAppartmentScreen({navigation}) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    marginHorizontal: 25,
+    marginHorizontal: 29,
   },
   informationContainer: {
     backgroundColor: '#fff',
     marginLeft: 29,
     marginRight: 20,
-    marginTop: 10,
+    marginTop: 5,
   },
   titleSt: {
-    // marginTop: Platform.OS === 'ios' ? 50 : 25,
     fontSize: 28,
     /* color: Colors.title, */
     // fontFamily: 'poppins',
@@ -187,6 +182,7 @@ const styles = StyleSheet.create({
     color: '#6D6D7A',
     lineHeight: 18.5,
     /* fontFamily: 'roboto', */
+    marginTop: 10,
     fontWeight: '400',
     fontSize: 12,
   },
@@ -272,6 +268,20 @@ const styles = StyleSheet.create({
   textLineStyle: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginRight: 5,
+  },
+
+  informationTitle: {
+    marginBottom: 5,
+    // fontFamily: 'roboto',
+    fontWeight: '400',
+    lineHeight: 33,
+  },
+
+  informationSubTitle: {
+    // fontFamily: 'roboto',
+    fontWeight: '400',
+    lineHeight: 33,
   },
 
   firstSectionContainer: {
@@ -281,7 +291,7 @@ const styles = StyleSheet.create({
 
   buttonStyle: {
     borderRadius: 10,
-    marginTop: 31,
+    marginTop: 20,
     height: 50,
   },
 });

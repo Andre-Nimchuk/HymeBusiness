@@ -32,6 +32,13 @@ export default function EditHymeDetails({navigation}) {
   const items = [
     {
       title: 'Street address',
+      //   input: () => (
+      //     <TextInput
+      //       style={styles.input}
+      //       onChangeText={onChangeText}
+      //       value={text.houseNumber}
+      //     />
+      //   ),
     },
     {
       title: 'House number',
