@@ -32,63 +32,21 @@ export default function EditHymeDetails({navigation}) {
   const items = [
     {
       title: 'Street address',
-      //   input: () => (
-      //     <TextInput
-      //       style={styles.input}
-      //       onChangeText={onChangeText}
-      //       value={text.houseNumber}
-      //     />
-      //   ),
     },
     {
       title: 'House number',
-      /*  input: () => (
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          value={text.houseNumber}
-        />
-      ), */
     },
     {
       title: 'City',
-      //   input: () => (
-      //     <TextInput
-      //       style={styles.input}
-      //       onChangeText={onChangeText}
-      //       value={text.houseNumber}
-      //     />
-      //   ),
     },
     {
       title: 'Postal Code',
-      //   input: () => (
-      //     <TextInput
-      //       style={styles.input}
-      //       onChangeText={onChangeText}
-      //       value={text.houseNumber}
-      //     />
-      //   ),
     },
     {
       title: 'State',
-      //   input: () => (
-      //     <TextInput
-      //       style={styles.input}
-      //       onChangeText={onChangeText}
-      //       value={text.houseNumber}
-      //     />
-      //   ),
     },
     {
       title: 'Country',
-      //   input: () => (
-      //     <TextInput
-      //       style={styles.input}
-      //       onChangeText={onChangeText}
-      //       value={text.houseNumber}
-      //     />
-      //   ),
     },
   ];
   const input = [
@@ -218,6 +176,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: '#F5F7F9',
     borderColor: '#1C1A2F',
+    opacity: 0.1,
     borderWidth: 1,
     borderRadius: 10,
     paddingLeft: 15,

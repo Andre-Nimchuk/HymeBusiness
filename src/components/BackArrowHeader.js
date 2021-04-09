@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   subTitle: {
-    fontFamily: 'roboto',
+    // fontFamily: 'roboto',
     fontSize: 12,
     fontWeight: '500',
     lineHeight: 18,

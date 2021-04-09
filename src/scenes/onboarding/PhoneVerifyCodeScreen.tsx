@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
+import {Text, Layout, Icon} from '@ui-kitten/components';
 import OTPInputView from '@twotalltotems/react-native-otp-input';
-import Colors from '../../styles/Colors';
-import {Icon} from '@ui-kitten/components';
+
 import BackArrowHeader from '../../components/BackArrowHeader';
+
+import Colors from '../../styles/Colors';
+
 import {useTranslation} from 'react-i18next';
 import {CognitoUser} from '@aws-amplify/auth';
 import {useAuth} from '../../providers/AuthProvider';
@@ -23,20 +26,18 @@ type Props = {
   navigation: any;
 };
 
-export default function PhoneVerifyCodeScreen({route, navigation}) {
+export default function PhoneVerifyCodeScreen({route, navigation}: Props) {
   const {sendCustomChallengeAnswer, resendSignupCode, handleLogin} = useAuth();
-
   const {t} = useTranslation();
 
   const [disableResend, setDisableResend] = useState(false);
   const [wrongCode, setWrongCode] = useState(false);
   const authType = route.params?.type;
   const user = route.params?.user;
-  console.log(route.params, 'asdasdasd');
 
-  const verifySignupCode = code =>
+  const verifySignupCode = (code: string) =>
     sendCustomChallengeAnswer(user, code)
-      .then(auth => {
+      .then((auth: any) => {
         if (auth.attributes === undefined) {
           navigation.goBack();
           return;
@@ -45,28 +46,29 @@ export default function PhoneVerifyCodeScreen({route, navigation}) {
         if (authType === 'signUp') navigation.navigate('Name');
         else handleLogin({token: auth.signInUserSession.accessToken.jwtToken});
       })
-      .catch(err => {
+      .catch((err: any) => {
         setWrongCode(true);
         console.log('error', err);
       });
+  console.log(verifySignupCode);
 
   const resendVerificationCode = async () =>
     resendSignupCode(user.username)
-      .then(res => {
+      .then((res: any) => {
         console.log('code resent successfully', res);
       })
-      .catch(e => {
+      .catch((e: any) => {
         console.log(e);
       });
 
   return (
-    <View style={{flex: 1, backgroundColor: '#fff'}}>
+    <Layout style={{flex: 1}}>
       <BackArrowHeader navigation={navigation} />
-      <View style={styles.container}>
-        <Text style={styles.h1}>Phone verification</Text>
+      <Layout style={styles.container}>
+        <Text style={styles.h1}>{`${t('Phone verification')}`}</Text>
         <Text style={{marginBottom: 32}}>
-          Enter code your received to
-          {/* <Text style={styles.labelTextStyle}>{user.username}</Text> */}
+          {`${t('Enter code your received to ')}`}
+          <Text style={styles.labelTextStyle}>{user.username}</Text>
         </Text>
 
         <OTPInputView
@@ -94,24 +96,24 @@ export default function PhoneVerifyCodeScreen({route, navigation}) {
             resendVerificationCode();
           }}
           disabled={disableResend}>
-          <View style={styles.row}>
+          <Layout style={styles.row}>
             <Text
               style={{
                 ...styles.resendBtn,
                 color: disableResend ? '#aaa' : Colors.pink,
               }}
               status="danger">
-              {t('RESEND CODE')}
+              {`${t('RESEND CODE')}`}
             </Text>
             <Icon
               style={styles.icon}
               fill={disableResend ? '#aaa' : Colors.pink}
               name="arrow-ios-forward-outline"
             />
-          </View>
+          </Layout>
         </TouchableOpacity>
-      </View>
-    </View>
+      </Layout>
+    </Layout>
   );
 }
 
@@ -120,7 +122,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 35,
     backgroundColor: '#fff',
-    marginTop: 25,
   },
   h1: {
     marginBottom: 3,

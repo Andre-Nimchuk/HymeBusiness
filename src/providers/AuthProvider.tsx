@@ -57,7 +57,7 @@ interface IAuthContextData {
   updateUser: (userObject: object) => void;
   signInOrUp: (phoneNumber: string) => Promise<any>;
 }
-
+console.log(CognitoUser);
 interface IGetMyUser {
   getMyUser: object;
 }
@@ -76,11 +76,11 @@ function AuthProvider(props: any) {
   const signIn = (phoneNumber: string) => Auth.signIn(phoneNumber);
 
   const handleLogin = async ({token}: IHandleLogin) => {
-    console.log(token, 'tokentokentokentoken'); //token user
+    // console.log(token);
     try {
       if (!user) {
         const getUser: IGetMyUserData = await getMyUser();
-        console.log(getUser, 'getUsergetUsergetUsergetUser');
+        console.log(getUser);
         setUser(getUser.data.getMyUser);
       }
 
@@ -114,18 +114,6 @@ function AuthProvider(props: any) {
   const signUp = async (phoneNumber: string) => {
     const randomPass = Math.random().toString(36).slice(-8);
 
-    console.log(
-      Auth.signUp({
-        username: phoneNumber,
-        password: randomPass,
-        attributes: {
-          phone_number: `${phoneNumber}`,
-          updated_at: `${Date.now()}`,
-        },
-      }),
-      ' asdfadsfsafdsafadsfadsfasfdsfadsfasfsfdsf',
-    );
-
     return Auth.signUp({
       username: phoneNumber,
       password: randomPass,
@@ -139,10 +127,6 @@ function AuthProvider(props: any) {
   const signInOrUp = async (phoneNumber: string) =>
     new Promise((resolve, reject) =>
       signIn(phoneNumber)
-        .then(() => {
-          console.log(resolve, 'resolveresolveresolveresolve');
-          console.log(reject, 'rejectrejectrejectrejectreject');
-        })
         .then(res => resolve({user: res, type: 'signIn'}))
         .catch(async err => {
           console.log(err, 'error🧘‍♂️🧘‍♂️🧘‍♂️');
@@ -178,7 +162,7 @@ function AuthProvider(props: any) {
 
   const resendSignupCode = (phoneNumber: string) =>
     Auth.resendSignUp(phoneNumber);
-  console.log(sendCustomChallengeAnswer, '218261623126368913129367');
+
   // Get Auth state
   const getAuthState = async () => {
     try {
@@ -221,7 +205,7 @@ function AuthProvider(props: any) {
       signInOrUp,
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state]); /* */
+  }, [state]);
 
   return (
     <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>

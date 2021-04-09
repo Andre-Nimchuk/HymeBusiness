@@ -1,21 +1,16 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {CheckBox, Input} from '@ui-kitten/components';
-
-import {useTranslation} from 'react-i18next';
+import {StyleSheet} from 'react-native';
+import {useMutation} from '@apollo/client';
+import {Text, Layout, CheckBox, Input} from '@ui-kitten/components';
+import BackArrowHeader from '../../components/BackArrowHeader';
+import FlatButton from '../../components/FlatButton';
 
 import Colors from '../../styles/Colors';
 
-import {useMutation} from '@apollo/client';
-
-/* import BackArrowHeader from 'components/BackArrowHeader'; */
-/* import FlatButton from 'components/FlatButton'; */
-
 import {UPDATE_MY_PROFILE} from '../../graphql/mutations';
 import {useAuth} from '../../providers/AuthProvider';
-// import {useTranslation} from 'react-i18next';
-// import {UPDATE_MY_PROFILE} from '../../graphql/mutations';
-// import {useAuth} from '../../providers/AuthProvider';
+import {useTranslation} from 'react-i18next';
+
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
@@ -38,7 +33,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     fontWeight: '500',
     color: Colors.subTitle,
-    fontFamily: 'roboto',
+    // fontFamily: 'roboto',
   },
   inputText: {
     fontSize: 16,
@@ -47,7 +42,7 @@ const styles = StyleSheet.create({
   },
   wrongLabel: {
     fontSize: 12,
-    fontFamily: 'roboto',
+    // fontFamily: 'roboto',
     color: Colors.error,
     lineHeight: 14,
   },
@@ -55,7 +50,7 @@ const styles = StyleSheet.create({
     marginTop: 28,
     marginBottom: 44,
     fontSize: 14,
-    fontFamily: 'roboto',
+    // fontFamily: 'roboto',
     color: Colors.title,
     lineHeight: 20,
     paddingLeft: 7,
@@ -67,7 +62,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function NameScreen({navigation}) {
+export default function NameScreen({navigation}: any) {
   const {handleLogin} = useAuth();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -96,21 +91,19 @@ export default function NameScreen({navigation}) {
   };
 
   const wrongText = () => {
-    return <Text style={styles.wrongLabel}>{t('Wrong format')}</Text>;
+    return <Text style={styles.wrongLabel}>{`${t('Wrong format')}`}</Text>;
   };
 
   return (
-    <View style={styles.wrapper}>
-      {/* <BackArrowHeader navigation={navigation} /> */}
-      <View style={styles.container}>
-        <Text style={styles.h1}>
-          {/* {`${t(' */}What is your name{/* ')}`} */}
-        </Text>
+    <Layout style={styles.wrapper}>
+      <BackArrowHeader navigation={navigation} />
+      <Layout style={styles.container}>
+        <Text style={styles.h1}>{`${t('What is your name')}`}</Text>
         <Text style={{marginBottom: 32}}>
-          {t('We’re happy you to be part of our community :')}
+          {`${t('We’re happy you to be part of our community :)')}`}
         </Text>
 
-        <Text style={styles.labelTextStyle}>{t('First Name')}</Text>
+        <Text style={styles.labelTextStyle}>{`${t('First Name')}`}</Text>
         <Input
           style={{
             borderColor: wrongName ? Colors.error : 'rgba(28,26,47, 0.1)',
@@ -127,7 +120,7 @@ export default function NameScreen({navigation}) {
             else setWrongName(false);
           }}
         />
-        <Text style={styles.labelTextStyle}>{'Last Name'}</Text>
+        <Text style={styles.labelTextStyle}>{`${t('Last Name')}`}</Text>
         <Input
           style={{
             borderColor: wrongSurName ? Colors.error : 'rgba(28,26,47, 0.1)',
@@ -152,7 +145,7 @@ export default function NameScreen({navigation}) {
             setAcceptTerms(!acceptTerms);
           }}>
           {`${t('I agree to')}`}
-          <Text style={{color: Colors.pink}}>{t('Terms of Service')}</Text>
+          <Text style={{color: Colors.pink}}>{`${t('Terms of Service')}`}</Text>
         </CheckBox>
 
         <FlatButton
@@ -176,7 +169,7 @@ export default function NameScreen({navigation}) {
                 : 0.7,
           }}
         />
-      </View>
-    </View>
+      </Layout>
+    </Layout>
   );
 }

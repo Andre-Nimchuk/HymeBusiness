@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     color: '#1C1A2F',
-    fontFamily: 'roboto',
+    // fontFamily: 'roboto',
     fontWeight: '400',
     lineHeight: 21,
   },
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   itemTitle: {
     fontSize: 14,
     color: '#1C1A2F',
-    fontFamily: 'roboto',
+    // fontFamily: 'roboto',
     fontWeight: '400',
     lineHeight: 34,
   },

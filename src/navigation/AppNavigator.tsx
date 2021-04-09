@@ -15,6 +15,8 @@ import {
   NameScreen,
 } from '../scenes/onboarding';
 
+import ChangeProfileScreen from '../scenes/tabs/profile/ChangeProfileScreen';
+
 const Stack = createStackNavigator();
 
 const AppStack = () => (
@@ -25,14 +27,20 @@ const AppStack = () => (
       name="DetailsAppartment"
       component={DetailsAppartmentScreen}
     />
+
     <Stack.Screen name="AddNewHyme" component={AddNewHyme} />
     <Stack.Screen name="EditHymeDetails" component={EditHymeDetails} />
+    <Stack.Screen name="ChangeProfile" component={ChangeProfileScreen} />
+    {/* <Stack.Screen
+      name="NotificationSettings"
+      component={NotificationSettingsScreen}
+    /> */}
   </Stack.Navigator>
 );
 
 const OnboardingStack = () => (
   <Stack.Navigator
-    initialRouteName="SignIn"
+    initialRouteName="SignIns"
     screenOptions={{headerShown: false}}>
     <Stack.Screen name="SignIn" component={SignInScreen} />
     <Stack.Screen name="PhoneVerifyCode" component={PhoneVerifyCodeScreen} />
@@ -55,7 +63,7 @@ export default function AppNavigator() {
   }, [authenticateUser]);
   return (
     <NavigationContainer>
-      {true ? <OnboardingStack /> : <AppStack />}
+      {state.isLoggedIn ? <AppStack /> : <OnboardingStack />}
     </NavigationContainer>
   );
 }
