@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image,
 } from 'react-native';
 import {Icon} from '@ui-kitten/components';
 import {useTranslation} from 'react-i18next';
@@ -72,7 +73,30 @@ export default function DetailsAppartmentScreen({navigation}) {
     },
   ];
 
+  const room = [
+    {
+      title: 'Living room',
+    },
+    {title: 'Bedroom'},
+    {title: 'Hall'},
+  ];
+
   const {t} = useTranslation();
+
+  const roomItem = ({item}) => {
+    /*  const imageUrl = `${REACT_APP_MEDIA_URL}/${item.image.file.key}`; */
+    return (
+      <TouchableOpacity
+        onPress={() => navigation.push('RoomDetails', {room: item})}>
+        <View style={styles.item}>
+          {item.image && (
+            <Image source={{uri: image}} style={styles.roomImage} />
+          )}
+          <Text style={styles.itemTitle}>{`${t(item.title)}`}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   const ListItem = (item, index) => {
     console.log(item);
@@ -122,6 +146,14 @@ export default function DetailsAppartmentScreen({navigation}) {
               <Text style={styles.addText}>{`${t('+Add Room')}`}</Text>
             </TouchableOpacity>
           </View>
+          <FlatList
+            style={styles.horizontalSloder}
+            horizontal
+            data={room}
+            renderItem={roomItem}
+            keyExtractor={item => item.id}
+            showsHorizontalScrollIndicator={false}
+          />
 
           <View style={styles.informationTab}>
             <Text style={styles.textInformationTab}>{`${t(
@@ -294,5 +326,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 20,
     height: 50,
+  },
+  horizontalSloder: {
+    marginLeft: 29,
+  },
+  item: {
+    marginRight: 15,
+  },
+  itemTitle: {
+    fontSize: 14,
+    color: '#1C1A2F',
+    fontFamily: 'roboto',
+    fontWeight: '400',
+    lineHeight: 34,
   },
 });

@@ -122,23 +122,16 @@ const styles = StyleSheet.create({
   generTitle: {
     fontSize: 14,
     fontWeight: '500',
-    /* fontFamily: 'poppins', */
+    fontFamily: 'poppins',
     lineHeight: 21.31,
     color: '#1C1A2F',
   },
   subTitle: {
     color: '#6D6D7A',
     lineHeight: 18.5,
-    /* fontFamily: 'roboto', */
+    fontFamily: 'roboto',
     fontWeight: '400',
     fontSize: 12,
-  },
-  errorTitle: {
-    color: '#FF6F66',
-    lineHeight: 18.5,
-    fontSize: 12,
-    /* fontFamily: 'roboto', */
-    fontWeight: '400',
   },
   locBlock: {
     marginHorizontal: 21,
@@ -150,13 +143,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
-    shadowColor: '#000',
+    shadowColor: 'rgba(33, 32, 41, 0.03)',
     shadowOffset: {
-      width: 0,
-      height: 5,
+      width: 10,
+      height: 15,
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 7.68,
+    shadowOpacity: 0.6,
+    shadowRadius: 10.32,
     elevation: 11,
     borderRadius: 10,
   },
@@ -164,30 +157,6 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     marginBottom: 8,
-  },
-  title: {
-    marginTop: 25,
-    fontSize: 22,
-    color: '#1C1A2F',
-    /* fontFamily: 'poppins', */
-    fontWeight: '600',
-    lineHeight: 33,
-  },
-  subTitle: {
-    fontSize: 12,
-    color: '#6D6D7A',
-    /* fontFamily: 'roboto', */
-    fontWeight: '400',
-    lineHeight: 18,
-  },
-  sectionTitle: {
-    marginTop: 29,
-    marginBottom: 23,
-    fontSize: 14,
-    color: '#BAB9BF',
-    fontFamily: 'poppins',
-    fontWeight: '500',
-    lineHeight: 21,
   },
   row: {
     flexDirection: 'row',
@@ -201,21 +170,11 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     color: '#1C1A2F',
-    // fontFamily: 'roboto',
+    fontFamily: 'roboto',
     fontWeight: '400',
     lineHeight: 21,
   },
   item: {
     marginRight: 15,
-  },
-  itemTitle: {
-    fontSize: 14,
-    color: '#1C1A2F',
-    // fontFamily: 'roboto',
-    fontWeight: '400',
-    lineHeight: 34,
-  },
-  transparent: {
-    backgroundColor: 'transparent',
   },
 });
